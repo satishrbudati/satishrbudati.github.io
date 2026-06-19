@@ -1,8 +1,9 @@
-FBCS Evidence Website Draft
+Satish Reddy Budati - Modern Executive FBCS Evidence Website
 
-Open index.html in a browser. Upload the folder to GitHub Pages, Netlify, Vercel, or any static hosting provider.
+Upload ALL files and folders in this folder to the root of your GitHub repository:
+satishrbudati.github.io
 
-Before submission:
-1. Replace placeholder evidence notes with actual public URLs or uploaded certificate links.
-2. Avoid confidential client data.
-3. Keep evidence mapped to only one section to avoid duplication.
+Do not upload this README only. Upload index.html, about.html, innovation.html, inspiring-others.html, consultancy.html, public-influence.html, contact.html, assets/, and evidence/.
+
+After upload, your site should display with styling at:
+https://satishrbudati.github.io
