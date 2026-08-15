@@ -28,3 +28,23 @@ document.addEventListener('DOMContentLoaded',()=>{
   wireEvidenceModal('tpcModal','tpcModalImage','tpcModalTitle','tpcModalSubtitle','tpc','data-tpc-close');
   wireEvidenceModal('sessionChairModal','sessionChairModalImage','sessionChairModalTitle','sessionChairModalSubtitle','chair','data-chair-close');
 });
+
+document.addEventListener('DOMContentLoaded',()=>{
+ const m=document.getElementById('innovationModal'); if(!m)return;
+ const img=document.getElementById('innovationModalImage'),title=document.getElementById('innovationModalTitle'),sub=document.getElementById('innovationModalSubtitle');
+ function openI(el){img.src=el.dataset.innovationImage;img.alt=el.dataset.innovationTitle||'Innovation evidence';title.textContent=el.dataset.innovationTitle||'';sub.textContent=el.dataset.innovationSubtitle||'';m.classList.add('open');m.setAttribute('aria-hidden','false');document.body.classList.add('modal-open')}
+ function closeI(){m.classList.remove('open');m.setAttribute('aria-hidden','true');document.body.classList.remove('modal-open');img.src=''}
+ document.querySelectorAll('[data-innovation-image]').forEach(el=>el.addEventListener('click',()=>openI(el)));
+ m.querySelectorAll('[data-innovation-close]').forEach(el=>el.addEventListener('click',closeI));
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&m.classList.contains('open'))closeI()});
+});
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const modal=document.getElementById('inspireModal'); if(!modal)return;
+  const image=document.getElementById('inspireModalImage'), title=document.getElementById('inspireModalTitle'), subtitle=document.getElementById('inspireModalSubtitle');
+  function openEvidence(el){image.src=el.dataset.inspireImage||'';image.alt=el.dataset.inspireTitle||'Evidence';title.textContent=el.dataset.inspireTitle||'';subtitle.textContent=el.dataset.inspireSubtitle||'';modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.classList.add('modal-open')}
+  function closeEvidence(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.classList.remove('modal-open');image.src=''}
+  document.querySelectorAll('[data-inspire-image]').forEach(el=>el.addEventListener('click',()=>openEvidence(el)));
+  modal.querySelectorAll('[data-inspire-close]').forEach(el=>el.addEventListener('click',closeEvidence));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeEvidence()});
+});
