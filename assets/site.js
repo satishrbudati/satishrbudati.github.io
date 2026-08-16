@@ -48,3 +48,77 @@ document.addEventListener('DOMContentLoaded',()=>{
   modal.querySelectorAll('[data-inspire-close]').forEach(el=>el.addEventListener('click',closeEvidence));
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeEvidence()});
 });
+
+
+
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const modal=document.getElementById('ieteModal');
+  const captions=['Fellow Certificate','Life Membership Card'];
+
+  function initSwiper(root,onChange){
+    if(!root)return null;
+    const track=root.querySelector('.iete-swiper-track');
+    const slides=[...root.querySelectorAll('.iete-slide')];
+    const dots=[...root.querySelectorAll('.iete-pagination button')];
+    const prev=root.querySelector('.iete-prev');
+    const next=root.querySelector('.iete-next');
+    let index=0;
+    let startX=null;
+
+    function show(i){
+      index=(i+slides.length)%slides.length;
+      track.style.transform=`translateX(-${index*100}%)`;
+      slides.forEach((s,n)=>s.classList.toggle('active',n===index));
+      dots.forEach((d,n)=>d.classList.toggle('active',n===index));
+      if(onChange)onChange(index);
+    }
+    prev?.addEventListener('click',e=>{e.stopPropagation();show(index-1)});
+    next?.addEventListener('click',e=>{e.stopPropagation();show(index+1)});
+    dots.forEach((d,n)=>d.addEventListener('click',e=>{e.stopPropagation();show(n)}));
+
+    root.addEventListener('touchstart',e=>{startX=e.touches[0].clientX},{passive:true});
+    root.addEventListener('touchend',e=>{
+      if(startX===null)return;
+      const dx=e.changedTouches[0].clientX-startX;
+      if(Math.abs(dx)>45)show(index+(dx<0?1:-1));
+      startX=null;
+    },{passive:true});
+
+    show(0);
+    return {show,getIndex:()=>index};
+  }
+
+  const thumb=initSwiper(document.querySelector('[data-iete-swiper="thumb"]'));
+  const modalSwiper=initSwiper(
+    document.querySelector('[data-iete-swiper="modal"]'),
+    i=>{
+      const c=document.getElementById('ieteModalCaption');
+      if(c)c.textContent=captions[i]||'';
+    }
+  );
+
+  if(!modal)return;
+  function openModal(e){
+    const slideBtn=e?.target?.closest('[data-slide-index]');
+    const targetIndex=slideBtn?Number(slideBtn.dataset.slideIndex):(thumb?.getIndex?.()||0);
+    modalSwiper?.show(targetIndex);
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
+  }
+  function closeModal(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');
+  }
+
+  document.querySelectorAll('[data-iete-open]').forEach(el=>el.addEventListener('click',openModal));
+  modal.querySelectorAll('[data-iete-close]').forEach(el=>el.addEventListener('click',closeModal));
+  document.addEventListener('keydown',e=>{
+    if(!modal.classList.contains('open'))return;
+    if(e.key==='Escape')closeModal();
+    if(e.key==='ArrowLeft')modalSwiper?.show(modalSwiper.getIndex()-1);
+    if(e.key==='ArrowRight')modalSwiper?.show(modalSwiper.getIndex()+1);
+  });
+});

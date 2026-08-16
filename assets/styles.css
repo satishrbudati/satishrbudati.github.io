@@ -1857,3 +1857,139 @@ html{
  .evolution-path{align-items:flex-start;flex-direction:column;gap:.45rem}
  .evolution-path b{transform:rotate(90deg);margin-left:.5rem}
 }
+
+/* Professional standing evidence */
+.membership-hero-links{display:flex;flex-wrap:wrap;gap:.42rem;align-items:center}
+.membership-hero-links a{color:var(--gold);text-decoration:none;transition:opacity .2s ease}
+.membership-hero-links a:hover{opacity:.72}
+.membership-hero-links span{color:#788291}
+.professional-standing-section{background:#0b0f14}
+.standing-intro{max-width:900px;color:#aeb7c5;line-height:1.75;margin-bottom:2rem}
+.standing-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.1rem}
+.standing-card{display:grid;grid-template-columns:190px 1fr;min-height:245px;border:1px solid rgba(201,168,76,.22);background:#090d12;overflow:hidden}
+.standing-cert{display:block;background:#111720;padding:.75rem;min-height:245px}
+.standing-cert img{width:100%;height:100%;max-height:220px;object-fit:contain;display:block;background:#fff}
+.standing-copy{padding:1.35rem 1.4rem;align-self:center}
+.standing-org{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.09em;text-transform:uppercase;color:var(--gold);margin-bottom:.55rem}
+.standing-copy h3{font-family:var(--serif);font-size:1.35rem;color:#f0eee8;margin:0 0 .65rem}
+.standing-copy p{color:#aeb7c5;font-size:.75rem;line-height:1.65;margin:0 0 .85rem}
+.standing-copy a{color:var(--gold);text-decoration:none;font-size:.72rem}
+.standing-text-card{grid-template-columns:190px 1fr}
+.standing-badge{display:flex;align-items:center;justify-content:center;min-height:245px;background:#111720;color:var(--gold);font-family:var(--serif);font-size:2.25rem;letter-spacing:.08em}
+@media(max-width:900px){.standing-grid{grid-template-columns:1fr}.standing-card{grid-template-columns:150px 1fr}.standing-text-card{grid-template-columns:150px 1fr}}
+@media(max-width:560px){.standing-card,.standing-text-card{grid-template-columns:1fr}.standing-cert,.standing-badge{min-height:190px}.standing-cert img{max-height:180px}.membership-hero-links{gap:.3rem}.membership-hero-links a{font-size:.86rem}}
+
+
+/* IETE dual-evidence card and popup */
+.standing-card-iete{grid-template-columns:300px 1fr}
+.standing-iete-preview{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:.42rem;
+  align-items:center;
+  width:100%;
+  min-height:245px;
+  padding:.7rem;
+  border:0;
+  background:#111720;
+  cursor:pointer;
+  overflow:hidden;
+}
+.iete-side{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:205px;
+  padding:.2rem;
+  background:#fff;
+  transition:transform .65s ease,opacity .45s ease;
+}
+.iete-side img{display:block;width:100%;height:100%;object-fit:contain}
+.standing-popup-link{
+  border:0;background:none;padding:0;color:var(--gold);font-size:.72rem;cursor:pointer;
+}
+.standing-popup-link:hover,.standing-iete-preview:hover + .standing-copy .standing-popup-link{
+  text-shadow:0 0 8px rgba(201,168,76,.6)
+}
+.membership-modal{position:fixed;inset:0;z-index:900;display:none;align-items:center;justify-content:center;padding:1.2rem}
+.membership-modal.open{display:flex}
+.membership-modal-backdrop{position:absolute;inset:0;background:rgba(2,4,8,.94);backdrop-filter:blur(8px)}
+.membership-modal-panel{
+  position:relative;z-index:1;width:min(1280px,96vw);max-height:92vh;overflow:auto;
+  background:#0c121b;border:1px solid rgba(201,168,76,.4)
+}
+.membership-modal-close{
+  position:absolute;right:.8rem;top:.75rem;z-index:3;width:42px;height:42px;
+  border:1px solid rgba(201,168,76,.42);background:#080d14;color:var(--gold);
+  font-size:1.5rem;cursor:pointer
+}
+.membership-modal-head{padding:1.2rem 1.35rem .8rem;border-bottom:1px solid rgba(201,168,76,.16)}
+.membership-modal-head h3{font-family:var(--serif);color:#f0eee8;font-size:1.7rem;font-weight:400;margin:.25rem 0 .25rem}
+.membership-modal-head p{color:#9fa9b8;font-size:.72rem;margin:0}
+.iete-modal-pair{display:grid;grid-template-columns:1.55fr 1fr;gap:1rem;padding:1rem;background:#070b11}
+.iete-modal-pair figure{margin:0;padding:.7rem;background:#fff;display:flex;flex-direction:column;justify-content:center;transition:transform .65s ease}
+.iete-modal-pair img{width:100%;height:min(62vh,620px);object-fit:contain;display:block}
+.iete-modal-pair figcaption{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.07em;color:#424850;padding:.45rem .2rem 0;text-transform:uppercase;text-align:center}
+@media(max-width:900px){
+  .standing-card-iete{grid-template-columns:240px 1fr}
+  .iete-side{height:185px}
+  .iete-modal-pair{grid-template-columns:1fr}
+  .iete-modal-pair img{height:auto;max-height:58vh}
+}
+@media(max-width:560px){
+  .standing-card-iete{grid-template-columns:1fr}
+  .standing-iete-preview{min-height:190px}
+  .iete-side{height:160px}
+}
+
+
+/* IETE one-image swiper with arrows + pagination */
+.standing-card-iete{grid-template-columns:300px 1fr}
+.iete-swiper,.iete-modal-swiper{position:relative;background:#111720;overflow:hidden}
+.iete-swiper{min-height:245px;padding:12px 12px 36px}
+.iete-swiper-viewport{position:relative;overflow:hidden;width:100%}
+.iete-swiper-track{display:flex;width:100%;transition:transform .32s ease}
+.iete-swiper .iete-slide{
+  flex:0 0 100%;width:100%;height:205px;padding:4px;border:0;background:#fff;
+  display:flex;align-items:center;justify-content:center;cursor:pointer
+}
+.iete-swiper .iete-slide img{display:block;width:100%;height:100%;object-fit:contain}
+.iete-nav{
+  position:absolute;top:50%;transform:translateY(-62%);z-index:4;
+  width:32px;height:38px;border:1px solid rgba(201,168,76,.42);
+  background:rgba(7,11,17,.82);color:var(--gold);font-size:1.55rem;
+  line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center
+}
+.iete-prev{left:18px}.iete-next{right:18px}
+.iete-nav:hover{box-shadow:0 0 10px rgba(201,168,76,.22)}
+.iete-pagination{
+  position:absolute;left:0;right:0;bottom:11px;display:flex;justify-content:center;gap:8px;z-index:5
+}
+.iete-pagination button{
+  width:8px;height:8px;border-radius:50%;border:1px solid var(--gold);
+  background:transparent;padding:0;cursor:pointer;transition:all .2s ease
+}
+.iete-pagination button.active{background:var(--gold);box-shadow:0 0 7px rgba(201,168,76,.55)}
+
+.iete-modal-swiper{padding:16px 52px 42px;background:#070b11}
+.iete-modal-swiper .iete-swiper-viewport{width:100%;max-height:68vh}
+.iete-modal-swiper .iete-slide{
+  flex:0 0 100%;width:100%;height:68vh;padding:8px;background:#fff;
+  display:flex;align-items:center;justify-content:center
+}
+.iete-modal-swiper .iete-slide img{display:block;width:100%;height:100%;object-fit:contain}
+.iete-modal-swiper .iete-prev{left:10px}
+.iete-modal-swiper .iete-next{right:10px}
+.iete-modal-swiper .iete-pagination{bottom:13px}
+.iete-modal-swiper .iete-nav{top:48%}
+
+@media(max-width:900px){
+  .standing-card-iete{grid-template-columns:240px 1fr}
+  .iete-swiper .iete-slide{height:185px}
+}
+@media(max-width:560px){
+  .standing-card-iete{grid-template-columns:1fr}
+  .iete-swiper .iete-slide{height:220px}
+  .iete-modal-swiper{padding:12px 40px 40px}
+  .iete-modal-swiper .iete-slide{height:55vh}
+}
